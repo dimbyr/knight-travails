@@ -20,26 +20,26 @@ class KnightBoard
   end
 end
 
-# knight shortest path
-class KnightTravel
-  attr_accessor :source, :destination
+# # knight shortest path
+# class KnightTravel
+#   attr_accessor :source, :destination
 
-  def initialize(source, destination)
-    @source = KnightNode.new(source)
-    @destination = KnightNode.new(destination)
-  end
+#   def initialize(source, destination)
+#     @source = KnightNode.new(source)
+#     @destination = KnightNode.new(destination)
+#   end
 
-  def level_order(node = @source)
-    # BFS
-  end
+#   def level_order(node = @source)
+#     # BFS
+#   end
 
-  def enqueue(node, lst)
-    lst << node
-    node.neighbors.each do |child|
-      lst << child if child.distance
-    end
-  end
-end
+#   def enqueue(node, lst)
+#     lst << node
+#     node.neighbors.each do |child|
+#       lst << child if child.distance
+#     end
+#   end
+# end
 
 board = KnightBoard.new
 
