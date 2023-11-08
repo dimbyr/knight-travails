@@ -18,6 +18,7 @@ class KnightBoard
       end
     end
   end
+
 end
 
 # # knight shortest path
@@ -40,6 +41,16 @@ end
 #     end
 #   end
 # end
+
+def levels(source, board)
+  source.distance = 0
+  source.predecessor = nil
+  queue = 
+  source.children.each do |x, y|
+    node = board[x][y]
+    node.predecessor = source.data if node.predecessor.nil? 
+  end
+end
 
 board = KnightBoard.new
 
