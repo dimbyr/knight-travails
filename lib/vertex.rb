@@ -22,10 +22,10 @@ class KnightNode < Node
     @neighbors = get_neighbors(data)
   end
 
-  def get_neighbors(data)
-    return if data.nil?
+  def get_neighbors(dataxy)
+    return if dataxy.nil?
 
-    i, j = data
+    i, j = dataxy
     where_to = [[2, 1], [2, -1], [1, 2], [-1, 2], [-2, 1], [-2, -1], [1, -2], [-1, -2]]
     neighbors = []
     where_to.each do |a, b|
@@ -39,5 +39,5 @@ end
 
 # pos = [7, 7]
 # knight = KnightNode.new(pos)
-# puts "#{pos} has #{knight.neighbors.length} neighbors"
+# puts "#{knight.data} has #{knight.neighbors.length} neighbors"
 # p knight.neighbors
