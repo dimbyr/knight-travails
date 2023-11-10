@@ -29,7 +29,7 @@ class KnightBoard
       assign_neighbors(s, queue, board)
       queue.shift
     end
-    puts "You made it in #{s.distance} steps"
+    puts "You made #{source} ==> #{dest} in #{s.distance} steps!"
     puts source.to_s + path_print(s)
   end
 
