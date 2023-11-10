@@ -20,16 +20,20 @@ class KnightBoard
     b
   end
 
-  # def knight_moves(source, dest, board = @board)
-  #   queue = [init_source(source, board)]
-  #   until queue.empty?
-  #     s = queue.first
-  #     assign_neighbors(s, queue, board)
-  #     queue.shift
-  #   end
-  #   res
-  # end
+  # Knights moves
+  def knight_moves(source, dest, board = @board)
+    queue = [init_source(source, board)]
+    s = queue[0]
+    until s.data == dest
+      s = queue.first
+      assign_neighbors(s, queue, board)
+      queue.shift
+    end
+    puts "You made it in #{s.distance} steps"
+    puts source.to_s + path_print(s)
+  end
 
+  # BFS
   def level_order(source, board = @board)
     res = []
     queue = [init_source(source, board)]
@@ -42,6 +46,12 @@ class KnightBoard
   end
 
   private
+
+  def path_print(node)
+    return '' if node.predecessor.nil?
+
+    path_print(node.predecessor) + "-->#{node.data}"
+  end
 
   def collect_result(source, queue, board, res)
     data = source.data
@@ -69,7 +79,3 @@ class KnightBoard
     end
   end
 end
-
-board = KnightBoard.new
-# puts board.board[3][3].data
-p board.level_order([3, 3])
