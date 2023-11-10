@@ -71,7 +71,7 @@ class KnightBoard
   def assign_neighbors(source, queue, board)
     source.neighbors.each do |x, y|
       node = board[x][y]
-      next if node.distance
+      next if node.visited?
 
       node.predecessor = source if node.predecessor.nil?
       node.distance = source.distance + 1
