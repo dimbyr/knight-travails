@@ -1,4 +1,5 @@
-# import vertex
+# frozen_string_litteral: true
+
 require_relative 'vertex'
 
 # a knight graph
@@ -10,71 +11,65 @@ class KnightBoard
   end
 
   def build_board
-    # (0..7).each do |lin|
-    #   (0..7).each do |col|
-    #     node = KnightNode.new([lin, col])
-    #     @board[lin][col] = node
-    #   end
-    # end
     b = [[nil] * 8] * 8
     b.map!.with_index do |valx, idx|
-      valx.map.with_index do |valy, idy|
+      valx.map.with_index do |_, idy|
         KnightNode.new([idx, idy])
       end
     end
     b
   end
-end
 
-# # knight shortest path
-# class KnightTravel
-#   attr_accessor :source, :destination
+  # def knight_moves(source, dest, board = @board)
+  #   queue = [init_source(source, board)]
+  #   until queue.empty?
+  #     s = queue.first
+  #     assign_neighbors(s, queue, board)
+  #     queue.shift
+  #   end
+  #   res
+  # end
 
-#   def initialize(source, destination)
-#     @source = KnightNode.new(source)
-#     @destination = KnightNode.new(destination)
-#   end
+  def level_order(source, board = @board)
+    res = []
+    queue = [init_source(source, board)]
+    until queue.empty?
+      s = queue.first
+      collect_result(s, queue, board, res)
+      queue.shift
+    end
+    res
+  end
 
-#   def level_order(node = @source)
-#     # BFS
-#   end
+  private
 
-#   def enqueue(node, lst)
-#     lst << node
-#     node.neighbors.each do |child|
-#       lst << child if child.distance
-#     end
-#   end
-# end
+  def collect_result(source, queue, board, res)
+    data = source.data
+    dist = source.distance
+    assign_neighbors(source, queue, board)
+    res << [data, dist]
+  end
 
-def levels(source, board)
-  return if source.nil?
+  def init_source(source, board)
+    x, y = source
+    s = board[x][y]
+    s.distance = 0
+    s.predecessor = nil
+    s
+  end
 
-  res = []
-  x, y = source
-  s = board[x][y]
-  p s.data, s.neighbors
-  puts '=' * 20
-  s.distance = 0
-  s.predecessor = nil
-  queue = [s]
-  until queue.empty?
-    s = queue.first
-    s.neighbors.each do |x, y|
+  def assign_neighbors(source, queue, board)
+    source.neighbors.each do |x, y|
       node = board[x][y]
-      node.predecessor = s.data if node.predecessor.nil?
       next if node.distance
 
-      node.distance = s.distance + 1
+      node.predecessor = source if node.predecessor.nil?
+      node.distance = source.distance + 1
       queue << node
     end
-    res << [s.data, s.distance]
-    queue.shift
-    p "#{source} -- #{s.data} distance #{s.distance}"
   end
-  res
 end
 
 board = KnightBoard.new
 # puts board.board[3][3].data
-levels([3, 3], board.board)
+p board.level_order([3, 3])
