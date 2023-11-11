@@ -36,8 +36,3 @@ class KnightNode < Node
     neighbors
   end
 end
-
-# pos = [7, 7]
-# knight = KnightNode.new(pos)
-# puts "#{knight.data} has #{knight.neighbors.length} neighbors"
-# p knight.neighbors
