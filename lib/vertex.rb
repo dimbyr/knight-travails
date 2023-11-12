@@ -36,3 +36,24 @@ class KnightNode < Node
     neighbors
   end
 end
+
+# Pawn Moves
+class PawnNode < Node
+  attr_accessor :has_moved
+
+  def initialize(data)
+    super
+    @neighbors = get_neighbors(data)
+    @has_moved = false
+  end
+
+  def get_neighbors(dataxy)
+    i, j = dataxy
+    neighs = []
+    onemove = j + 1
+    twomoves = j + 2
+    neighs << onemove if onemove < 8
+    neighs << twomoves if twomoves < 8 && !@has_moved
+    neighs
+  end
+end
