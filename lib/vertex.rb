@@ -57,3 +57,23 @@ class PawnNode < Node
     neighs
   end
 end
+
+# King Moves
+class KingNode < Node
+  # attr_accessor :has_moved
+
+  def initialize(data)
+    super
+    @neighbors = get_neighbors(data)
+    # @has_moved = false
+  end
+
+  def get_neighbors(dataxy)
+    i, j = dataxy
+    i_moves = [i, i + 1,  i - 1].select! { |x| x.between?(0, 7)}
+    j_moves = [j, j + 1, j - 1].select! { |y| y.between?(0, 7)}
+    neighs = i_moves.product(j_moves)
+    neighs.delete([i, j])
+    neighs
+  end
+end
