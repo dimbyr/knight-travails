@@ -111,3 +111,32 @@ end
 # bishop = BishopNode.new(data)
 # puts "Neighbors of Bishop #{data}"
 # p bishop.neighbors
+
+class CastleNode < Node
+  # attr_accessor :has_moved
+
+  def initialize(data)
+    super
+    @neighbors = get_neighbors(data)
+  end
+
+  def get_neighbors(dataxy)
+    i, j = dataxy
+    neighs = []
+    movesx = (1..7).to_a
+    movesy = (1..7).to_a
+    movesx.each do |x|
+      neighs << [i - x, j]
+      neighs << [i + x, j]
+      neighs << [i, j + x]
+      neighs << [i, j - x]
+    end
+    neighs.select { |x, y| x.between?(0, 7) && y.between?(0, 7) }
+  end
+end
+
+data = [3, 3]
+castle = CastleNode.new(data)
+puts "Neighbors of Castle #{data}"
+p castle.neighbors
+
