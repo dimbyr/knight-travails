@@ -78,11 +78,10 @@ class KingNode < Node
   end
 end
 
-data = [3, 3]
-king = KingNode.new(data)
-puts "Neighbors of King #{data}"
-p king.neighbors
-
+# data = [3, 3]
+# king = KingNode.new(data)
+# puts "Neighbors of King #{data}"
+# p king.neighbors
 
 # A bishop node
 class BishopNode < Node
@@ -112,6 +111,7 @@ end
 # puts "Neighbors of Bishop #{data}"
 # p bishop.neighbors
 
+# Castle node
 class CastleNode < Node
   # attr_accessor :has_moved
 
@@ -124,7 +124,6 @@ class CastleNode < Node
     i, j = dataxy
     neighs = []
     movesx = (1..7).to_a
-    movesy = (1..7).to_a
     movesx.each do |x|
       neighs << [i - x, j]
       neighs << [i + x, j]
@@ -135,8 +134,7 @@ class CastleNode < Node
   end
 end
 
-data = [3, 3]
-castle = CastleNode.new(data)
-puts "Neighbors of Castle #{data}"
-p castle.neighbors
-
+# data = [3, 3]
+# castle = CastleNode.new(data)
+# puts "Neighbors of Castle #{data}"
+# p castle.neighbors
