@@ -37,7 +37,7 @@ class KnightNode < Node
   end
 end
 
-# Pawn Moves
+# Pawn Node
 class PawnNode < Node
   attr_accessor :has_moved
 
